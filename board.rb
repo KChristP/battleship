@@ -1,10 +1,6 @@
 class Board
   def initialize(grid = nil)
     @grid = grid == nil ? Board.default_grid : grid
-    # @index_grid = []
-    # @grid.each_with_index do |row, row_idx|
-    #   @index_grid << row.each_with_index.map {|value, col_idx| row_idx.to_s + col_idx.to_s}
-    # end
   end
 
   def self.default_grid
@@ -57,7 +53,12 @@ class Board
   end
 
   def display
-    @grid.reverse_each {|row| p row}
+    i = 0
+    @grid.reverse_each do |row|
+      puts "#{9 - i} | #{row}"
+      i += 1
+    end
+    puts "    #{(0..9).to_a.map {|num| num.to_s}}"
   end
 
   def populate_grid
