@@ -7,7 +7,13 @@ class HumanPlayer
 
   def get_play
     puts "Please input coordinates to attack in the format row, column"
-    move = gets.chomp.split(", ").map {|move| move.to_i}
+    move = gets.chomp
+    if move.length == 4 && move[1] == "," && move[2] == " "
+      move.split(", ").map {|move| move.to_i}
+    else
+      puts "Wrong coordinate format, include a comma and a space but no other characters"
+      get_play
+    end
   end
 
   def record_hit(pos, mark)
