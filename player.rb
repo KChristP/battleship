@@ -11,7 +11,7 @@ class HumanPlayer
     if move.length == 4 && move[1] == "," && move[2] == " "
       move.split(", ").map {|move| move.to_i}
     else
-      puts "Wrong coordinate format, include a comma and a space but no other characters"
+      puts "Wrong coordinate format, include a comma and a space but5,  no other characters"
       get_play
     end
   end
@@ -19,9 +19,9 @@ class HumanPlayer
   def record_hit(pos, mark)
     @enemy_board.mark(pos, mark)
     if mark == :x
-      puts "\nYou scored a HIT!!!!!"
+      puts "\nYou scored a HIT!!!!! At #{pos}"
     else
-      puts "\nYou missed"
+      puts "\nYou missed. At #{pos}"
     end
     puts "\nReconnaissance:\n"
     @enemy_board.display

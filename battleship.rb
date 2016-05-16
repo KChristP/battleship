@@ -17,7 +17,11 @@ class BattleshipGame
 
   def keenan_play_turn
     move = @attacker.get_play
-    mark = @defender.defend(move)#this returns a mark :x or :o while also marking the defender's board
+    mark = @defender.defend(move)
+    until mark.class == Symbol && mark.class != Array
+      move = mark
+      mark = @defender.defend(move)#this returns a mark :x or :o or a new move(if it was a repeat) while also marking the defender's board
+    end
     @attacker.record_hit(move, mark)
     @defender.acknowledge(move, mark)
     @defender, @attacker = @attacker, @defender
