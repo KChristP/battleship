@@ -55,10 +55,11 @@ class Board
   def display
     i = 0
     @grid.reverse_each do |row|
-      puts "#{9 - i} | #{row}"
+      puts "row#{9 - i} | #{row.map {|x| x.class == Symbol ? x.to_s.upcase : x}} | #{9 - i}"
       i += 1
     end
-    puts "    #{(0..9).to_a.map {|num| num.to_s}}"
+    puts "        ___  ___  ___  ___  ___  ___  ___  ___  ___  ___ e[32mDONEe[0m"
+    puts "       #{(0..9).to_a.map {|num| num.to_s}}\n"
   end
 
   def populate_grid
@@ -124,6 +125,7 @@ class Board
   end
 
   def attack(position)
+    p position
     row = position[0]
     col = position[1]
     if @grid[row][col] == :s
@@ -132,7 +134,7 @@ class Board
       @grid[row][col] = :o
     else
       puts "Invalid move, try another position"
-      attack(gets.chomp.split(", ").map {|x| x.to_i})
+      move = gets.chomp.split(", ").map {|x| x.to_i}
     end
   end
 
